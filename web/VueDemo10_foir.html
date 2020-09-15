@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="新增" @click="add">
+    <input type="button" value="删除" @click="remove">
+    <ul>
+        <li v-for="(item,index) in arr">
+            {{index+1+" "}}{{item}}
+        </li>
+    </ul>
+    <h3 v-for="(item,index) in arr2">{{item.name}}</h3>
+</div>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            arr: ["北京", "上海", "广州", "深圳"],
+            arr2: [
+                {name: "第一个元素"},
+                {name: "第二个元素"}
+            ]
+        },
+        methods: {
+            add: function () {
+                this.arr2.push({name: "新增元素"});
+            },
+            remove: function () {
+                this.arr2.shift();
+            }
+        }
+    })
+</script>
+</body>
+</html>

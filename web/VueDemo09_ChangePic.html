@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <table>
+        <tr>
+            <td width="40px"><input type="button" @click="prev" v-show="index>0" value="<<"></td>
+            <td width="200px" align="center"><img :src="imgArr[index]"></td>
+            <td width="40px"><input type="button" @click="next" v-show="index<11" value=">>"></td>
+        </tr>
+    </table>
+
+
+</div>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            imgArr: [
+                "left.png",
+                "right.png",
+                "left.png",
+                "right.png",
+                "left.png",
+                "right.png",
+                "stand.png",
+                "yao.png",
+                "stand.png",
+                "yao.png",
+                "stand.png",
+                "yao.png",
+            ],
+            index: 0
+        },
+        methods: {
+            prev: function () {
+                this.index -= 1;
+            },
+            next: function () {
+                this.index += 1;
+            }
+        }
+    })
+</script>
+</body>
+</html>

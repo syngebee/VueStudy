@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        .active {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <img src="pic1.jpg" @click="traggleIsActive" :class="{active:isActive}">
+</div>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            isActive: false,
+        },
+        methods: {
+            traggleIsActive: function () {
+                this.isActive = !this.isActive;
+            }
+        }
+    })
+</script>
+</body>
+</html>

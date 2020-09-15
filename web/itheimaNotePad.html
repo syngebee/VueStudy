@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="vue.js"></script>
+    <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+    <style>
+        #table1 {
+            width: 300px;
+            margin-left: 100px;
+        }
+
+        #app {
+            position: relative;
+            margin: auto;
+            width: 500px;
+        }
+
+        #last {
+            text-align: left;
+            font-size: 8px;
+        }
+
+        #clear {
+            text-align: right;
+            font-size: 8px;
+            width: 50px;
+        }
+
+        #input {
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<br>
+<br>
+<h1 align="center">小黑记事本</h1>
+<div id="app">
+    <table class="table table-hover table-condensed table-bordered" id="table1">
+        <tr align="center">
+            <!--↓当enter键弹起时触发add↓-->
+            <td colspan="3"><input type="text" name="note" @keyup.enter="add" v-model="message" width="300px"
+                                   id="input"></td>
+        </tr>
+        <!--↓循环arr数组↓item,index都是临时变量↓-->
+        <tr align="center" v-for="(item,index) in arr">
+            <td width="30px">{{index+1}}</td>
+            <!--↓渲染item↓-->
+            <td>{{item}}</td>
+            <!--click触发del传索引-->
+            <td><span v-if="isHandOver" @click="del(index)">x</span></td>
+        </tr>
+        <tr align="center" v-if="index>0">
+            <!--总记录数-->
+            <td id="last" colspan="2">总共{{index}}条记录</td>
+            <td id="clear" @click="clear">clear</td>
+        </tr>
+    </table>
+</div>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            message: "java后端牛逼,enter键入",
+            isHandOver: true,
+            arr: [],
+            /*仅记录总数*/
+            index: 0
+        },
+        methods: {
+            add: function () {
+                this.arr.push(this.message);
+                /*总数增加*/
+                this.index++;
+                /*清空输入框*/
+                this.message = "";
+            },
+            clear: function () {
+                /*清空数组*/
+                this.arr = [];
+                /*清空计数器*/
+                this.index = 0;
+            },
+            del: function (index) {
+                /*删除数组第一个元素*/
+                this.arr.splice(index, 1);
+                /*总数减一*/
+                this.index--;
+            }
+        }
+    })
+</script>
+</body>
+</html>

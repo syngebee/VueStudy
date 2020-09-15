@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="事件绑定" @click="doIt">
+    <input type="button" value="双击绑定" @dblclick="doIt">
+    <h2 @click="changeFood">{{food}}</h2>
+</div>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            food: "番茄炒蛋"
+        },
+        methods: {
+            doIt: function () {
+                alert("事件被触发");
+            },
+            changeFood: function () {
+                this.food += "炒"
+            }
+        }
+    })
+</script>
+</body>
+</html>

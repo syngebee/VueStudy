@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueDemo01</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <h1>
+        姓名: {{school.name}}<br>
+        手机: {{school.mobile}}
+    </h1>
+</div>
+<script>
+    let app = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello Vue !",
+            school: {
+                name: "黑马程序员",
+                mobile: "400-0000"
+            },
+            campus: ["北京校区", "上海校区", "深圳校区"]
+        }
+    });
+</script>
+</body>
+</html>
